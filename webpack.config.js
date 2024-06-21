@@ -1,10 +1,10 @@
 const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
 
 module.exports = withModuleFederationPlugin({
-  name: "container",
+  name: "portal",
   filename: "remoteEntry.js",
   remotes: {
-    "portal": "http://localhost:3001/remoteEntry.js",
+    "extcompanies": "http://localhost:3001/remoteEntry.js",
   },
 
   shared: {

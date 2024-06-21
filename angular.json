@@ -3,7 +3,7 @@
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
-		"container": {
+		"portal": {
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:component": {
@@ -17,7 +17,7 @@
 				"build": {
 					"builder": "ngx-build-plus:browser",
 					"options": {
-						"outputPath": "dist/container",
+						"outputPath": "dist/portal",
 						"index": "src/index.html",
 						"main": "src/main.ts",
 						"polyfills": [
@@ -38,12 +38,11 @@
 					},
 					"configurations": {
 						"production": {
-							"fileReplacements": [
-								{
-									"replace": "src/environments/environment.ts",
-									"with": "src/environments/environment.prod.ts"
+							"optimization": {
+								"styles": {
+									"inlineCritical": false
 								}
-							],
+							},
 							"budgets": [
 								{
 									"type": "initial",
@@ -56,16 +55,33 @@
 									"maximumError": "4kb"
 								}
 							],
+							"fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.production.ts"
+                }
+              ],
 							"outputHashing": "all",
 							"extraWebpackConfig": "webpack.prod.config.js"
 						},
+						
 						"development": {
 							"buildOptimizer": false,
-							"optimization": false,
+							"optimization": {
+								"styles": {
+									"inlineCritical": false
+								}
+							},
 							"vendorChunk": true,
 							"extractLicenses": false,
 							"sourceMap": true,
-							"namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
 						}
 					},
 					"defaultConfiguration": "production"
@@ -74,11 +90,11 @@
 					"builder": "ngx-build-plus:dev-server",
 					"configurations": {
 						"production": {
-							"browserTarget": "container:build:production",
+							"buildTarget": "portal:build:production",
 							"extraWebpackConfig": "webpack.prod.config.js"
 						},
 						"development": {
-							"browserTarget": "container:build:development"
+							"buildTarget": "portal:build:development"
 						}
 					},
 					"defaultConfiguration": "development",
@@ -91,7 +107,7 @@
 				"extract-i18n": {
 					"builder": "ngx-build-plus:extract-i18n",
 					"options": {
-						"browserTarget": "container:build",
+						"buildTarget": "portal:build",
 						"extraWebpackConfig": "webpack.config.js"
 					}
 				},
