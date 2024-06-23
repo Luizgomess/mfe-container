@@ -1,0 +1,16 @@
+{
+  "projects": [
+    {
+      "name": "Parceiros",
+      "route": "/partners",
+      "description": "acesse o portal de parceiros e administre os parceiros podendo adicionar, editar ou deletar algum parceiro",
+      "permissions": ["fin-partners"]
+    },
+    {
+      "name": "Empresas externas",
+      "route": "/external-companies",
+      "description": "acesse o portal de empresas externas e administre os parceiros podendo adicionar, editar ou deletar algum parceiro",
+      "permissions": ["fin-external-comp"]
+    }
+  ]
+}

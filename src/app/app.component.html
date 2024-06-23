@@ -1,6 +1,3 @@
-<div>
-  <p><a routerLink="/external-companies">Acesse MFE-1</a></p>
-</div>
-<div>
-  <router-outlet></router-outlet>
-</div>
+<app-header *ngIf="isAuthenticated | async"></app-header>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,20 @@
+<main class="root">
+  <section class="home content">
+    <form class="search">
+      <input type="text" placeholder="Pesquise por um projeto" finInput [(ngModel)]="projectName" />
+      <span>
+        <i class="ph ph-magnifying-glass"></i>
+      </span>
+    </form>
+    <section class="projects" *ngIf="(projects | async) as projects">
+      <article class="project" *ngFor="let project of projects | filter: projectName">
+        <header>
+          <h1>{{ project.name }}</h1>
+          <p>{{ project.description }}</p>
+        </header>
+        <a [routerLink]="project.route">Acessar projeto</a>
+      </article>
+    </section>
+  </section>
+
+</main>

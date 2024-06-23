@@ -1,0 +1,70 @@
+@import '../../../../node_modules/@elgomezz/finui/src/assets/scss/variables/colors';
+@import '../../../../node_modules/@elgomezz/finui/src/assets/scss/mixins/breakpoint';
+
+.login {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-rows: 1fr;
+  min-height: 100vh;
+  background-color: $white-100;
+
+  @include breakpoint("md") {
+    background-color: $orange-100;
+    grid-template-columns: 1fr;
+    .side-content {
+      display: none;
+    }
+
+    .description {
+      font-size: 1.25rem;
+    }
+  }
+
+  .form {
+    height: 100%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    background-color: #ea6323;
+    padding: 2.5rem;
+
+    .title, .description {
+      text-align: center;
+      color: $white-100;
+    }
+
+    fieldset {
+      border: none;
+      display: grid;
+      gap: 1.25rem;
+
+      legend {
+        position: absolute;
+        left: -999em;
+        width: 1em;
+        overflow: hidden;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+
+        label {
+          font-size: 1.25rem;
+          color: $white-100;
+          margin-bottom: 0.625rem;
+        }
+      }
+
+      .checkbox-field {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        color: $white-100;
+      }
+    }
+  }
+}

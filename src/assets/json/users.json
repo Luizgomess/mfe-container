@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "name": "Admin",
+      "username": "admin@fin.com",
+      "password": "admin",
+      "roles": ["fin-portal", "fin-partners", "fin-external-comp", "fin-configuration"]
+    },
+    {
+      "name": "Alessandro",
+      "username": "partner@fin.com",
+      "password": "partner",
+      "roles": ["fin-portal", "fin-partners", "fin-configuration"]
+    },
+    {
+      "name": "Marcio",
+      "username": "external@fin.com",
+      "password": "external",
+      "roles": ["fin-portal", "fin-external-comp", "fin-configuration"]
+    }
+  ]
+}

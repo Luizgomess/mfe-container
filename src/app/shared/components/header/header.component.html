@@ -1,0 +1,24 @@
+<header class="menu">
+  <nav class="content navigator">
+    <section class="mock-logo"></section>
+    <section class="user-display" (click)="showToggle()">
+      <div class="mock-picture"></div>
+      <p class="description">
+        <span>Olá</span><br>
+        <b>Fulano!</b>
+      </p>
+      <i class="ph ph-caret-down icon"></i>
+    </section>
+    <section class="options" *ngIf="toggle" #options>
+      <a routerLink="/configuration">
+        <i class="ph ph-gear"></i>
+        Configurações
+      </a>
+      <a (click)="logout()">
+        <i class="ph ph-power"></i>
+        Sair
+      </a>
+  </section>
+    <!-- <section class="mock-logo"></section> -->
+  </nav>
+</header>

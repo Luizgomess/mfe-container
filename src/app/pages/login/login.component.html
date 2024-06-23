@@ -1,0 +1,29 @@
+<main class="login">
+  <p *ngIf="login$ | async"></p>
+  <section class="side-content"></section>
+  <form (ngSubmit)="login()" class="form" aria-labelledby="login-heading">
+    <h1 id="login-heading" class="title">Portal de usuários</h1>
+    <p class="description">Bem vindo ao Portal de usuários, por favor adicione suas credênciais</p>
+    <fieldset class="credentials">
+      <legend>Credentials</legend>
+      <section class="field">
+        <label for="username">Usuário</label>
+        <input type="text" id="username" placeholder="email@fin.com" [(ngModel)]="username" finInput required aria-required="true"
+          aria-label="Username" />
+      </section>
+      <section class="field">
+        <label for="password">Senha</label>
+        <input type="password" placeholder="sua senha" id="password" [(ngModel)]="password" finInput required aria-required="true"
+          aria-label="Password" />
+      </section>
+    </fieldset>
+    <fieldset>
+      <legend>Agreement</legend>
+      <section class="checkbox-field">
+        <input type="checkbox" id="checkbox" finCheckbox aria-labelledby="checkbox-label" />
+        <label id="checkbox-label" for="checkbox">Manter-me conectado neste dispositivo</label>
+      </section>
+    </fieldset>
+    <button type="submit" finButton aria-label="Login">Entrar</button>
+  </form>
+</main>
