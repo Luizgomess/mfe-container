@@ -11,7 +11,7 @@ import { PortalService } from 'src/app/core/services/portal/portal.service';
 })
 export class HomeComponent {
   projects: Observable<Project[]> = this.portalService.getProjects();
-  projectName: string = '';
+  projectName = '';
 
   constructor(private authService: AuthService, private portalService: PortalService) {}
 

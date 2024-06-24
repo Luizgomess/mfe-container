@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 export class LoginComponent {
   username!: string;
   password!: string;
-  rememberMe: boolean = false;
+  rememberMe = false;
   login$!: Observable<void>;
 
   constructor(private authService: AuthService) {}

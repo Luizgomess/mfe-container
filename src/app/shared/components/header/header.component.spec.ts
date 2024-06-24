@@ -5,12 +5,10 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
-  let authServiceMock: any;
+  let authServiceMock: jasmine.SpyObj<AuthService>;
 
   beforeEach(async () => {
-    authServiceMock = {
-      logout: jasmine.createSpy('logout')
-    };
+    authServiceMock = jasmine.createSpyObj(AuthService, ['logout']);
 
     await TestBed.configureTestingModule({
       declarations: [HeaderComponent],
