@@ -16,6 +16,15 @@ const routes: Routes = [
       exposedModule: './Module',
     }).then(m => m.AppModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'partners',
+    loadChildren: () => loadRemoteModule({
+      type: 'module',
+      remoteEntry: environment.production ? 'https://luizgomess.github.io/partners/remoteEntry.js' : 'http://localhost:3002/remoteEntry.js',
+      exposedModule: './Module',
+    }).then(m => m.AppModule),
+    canActivate: [AuthGuard]
   }
 ];
 
