@@ -2,14 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { HeaderComponent } from './components/header/header.component';
-import { ProjectComponent } from './components/project/project.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     FilterPipe,
-    HeaderComponent,
-    ProjectComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -17,8 +15,7 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     FilterPipe,
-    HeaderComponent,
-    ProjectComponent,
+    HeaderComponent
   ]
 })
 export class SharedModule { }

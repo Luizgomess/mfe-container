@@ -9,56 +9,62 @@ import { User, UsersResponse } from '../../interfaces/user.interface';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private router: Router, private cookieService: CookieService, private http: HttpClient) {}
   private loggedInSubject = new BehaviorSubject<boolean>(this.isAuthenticated());
-
   public isLoggedIn$ = this.loggedInSubject.asObservable();
+
+  constructor(
+    private router: Router, 
+    private cookieService: CookieService, 
+    private http: HttpClient
+  ) {}
 
   authenticateClient(): Observable<UsersResponse> {
     return this.http.get<UsersResponse>('../../../../assets/json/users.json');
   }
 
-  login(username: string, password: string): Observable<void> {
-    if(username && password) {
+  login(username: string, password: string, rememberMe: boolean): Observable<void> {
+    if (username && password) {
       return this.authenticateClient().pipe(
         map(response => {
-          response.users.map((user: User) => {
-            if(user.username === username && user.password === password) {
+          const user = response.users.find((user: User) => user.username === username && user.password === password);
+          if (user) {
+            if (rememberMe) {
               this.cookieService.set('user', JSON.stringify(user));
-              this.router.navigate(['/home']);
-              this.loggedInSubject.next(true);
+            } else {
+              localStorage.setItem('user', JSON.stringify(user));
             }
-          })
+            this.router.navigate(['/home']);
+            this.loggedInSubject.next(true);
+          }
         })
-      )
+      );
     }
     return of(undefined);
   }
 
   isAuthenticated(): boolean {
-    const user = this.cookieService.get('user');
+    const user = this.cookieService.get('user') || localStorage.getItem('user');
     const lastUserPage = localStorage.getItem('last-page');
     this.router.navigate([lastUserPage ? lastUserPage : '/home']);
 
-    if(user) {
-      return true;
-    }
-    return false;
+    return !!user;
   }
 
   logout(): void {
     this.cookieService.delete('user');
+    localStorage.removeItem('user');
     this.router.navigate(['/login']);
     this.loggedInSubject.next(false);
   }
 
   getUser(): User | null {
-    return this.isAuthenticated() ? JSON.parse(this.cookieService.get('user')) : null;
+    const user = this.cookieService.get('user') || localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
   }
 
   getUserRoles(): string[] {
-    const userData = JSON.parse(this.cookieService.get('user'))
-    return userData.roles;
+    const user = this.getUser();
+    return user ? user.roles : [];
   }
 
   setLastPage(page: string): void {

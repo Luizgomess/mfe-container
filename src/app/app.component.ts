@@ -1,18 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from './core/services/auth/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `
+    <app-header *ngIf="isAuthenticated | async"></app-header>
+    <router-outlet></router-outlet>
+  `
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'portal';
   isAuthenticated = this.authService.isLoggedIn$;
-  constructor(private readonly authService: AuthService, private readonly router: Router) {}
-
-  ngOnInit(): void {
-
-  }
+  constructor(private readonly authService: AuthService) {}
 }

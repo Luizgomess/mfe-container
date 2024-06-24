@@ -125,7 +125,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/@elgomezz/finui/src/assets/scss/settings/styles.scss"
             ],
             "scripts": []
           }

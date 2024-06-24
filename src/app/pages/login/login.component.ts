@@ -10,11 +10,12 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 export class LoginComponent {
   username!: string;
   password!: string;
+  rememberMe: boolean = false;
   login$!: Observable<void>;
 
   constructor(private authService: AuthService) {}
 
   login() {
-    this.login$ = this.authService.login(this.username, this.password);
+    this.login$ = this.authService.login(this.username, this.password, this.rememberMe);
   }
 }
